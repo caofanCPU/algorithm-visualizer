@@ -2,7 +2,10 @@
 
 > #### Table of Contents
 > - [Running Locally](#running-locally)
-> - [Creating a Pull Request](#creating-a-pull-request)
+> - [Running in Gitpod](#running-in-gitpod)
+> - [Directory Structure](#directory-structure)
+
+Are you a first-timer in contributing to open source? [These guidelines](https://opensource.guide/how-to-contribute/#how-to-submit-a-contribution) from GitHub might help!
 
 ## Running Locally
 
@@ -13,39 +16,45 @@
     ```bash
     git clone https://github.com/<your-username>/algorithm-visualizer.git    
     ```
+    
+3. Choose whether to run [`server`](https://github.com/algorithm-visualizer/server) on your machine or to use the remote server.
+    - If you choose to run the server locally as well, follow the instructions [here](https://github.com/algorithm-visualizer/server/blob/master/CONTRIBUTING.md#running-locally).
 
-3. Install [Docker](https://docs.docker.com/install/), if not already installed.
+    - If you choose to use the remote server, **temporarily** (i.e., don't commit this change) modify `package.json` as follows:
+        ```diff
+        - "proxy": "http://localhost:8080",
+        + "proxy": "https://algorithm-visualizer.org",
+        ```
 
-4. Install dependencies, and run the server.
+4. Install dependencies, and run the web app.
 
     ```bash
     cd algorithm-visualizer
 
     npm install
     
-    npm run dev
+    npm start
     ```
     
-5. Open [`http://localhost:8080/`](http://localhost:8080/) in a web browser.
+5. Open [`http://localhost:3000/`](http://localhost:3000/) in a web browser.
 
-## Creating a Pull Request
-  
-6. Create a branch addressing the issue/improvement you'd like to tackle.
+## Running in Gitpod
 
-    ```bash
-    git checkout -b my-problem-fixer-branch
-    ```
+You can also run `algorithm-visualizer` in Gitpod, a free online dev environment for GitHub.
 
-7. Write some awesome code.
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/algorithm-visualizer/algorithm-visualizer)
 
-8. Commit the changes, and push them to `my-problem-fixer-branch` branch on your forked repo.
+## Directory Structure
 
-    ```bash
-    git add .
-    
-    git commit -m "Explain my awesome changes"
-
-    git push origin my-problem-fixer-branch
-    ```
-
-9. Create a pull request from `my-problem-fixer-branch` branch on your forked repo to `master` branch on the main repo.
+- [**branding/**](branding) contains representative image files.
+- [**public/**](public) contains static files to be served.
+- [**src/**](src) contains source code. 
+    - [**apis/**](src/apis) defines outgoing API requests.
+    - [**common/**](src/common) contains commonly used files.
+    - [**components/**](src/components) contains UI components.
+    - [**core/**](src/core) processes visualization.
+        - [**layouts/**](src/core/layouts) layout tracers.
+        - [**renderers/**](src/core/renderers) renders visualization data.
+        - [**tracers/**](src/core/tracers) interprets visualizing commands into visualization data.
+    - [**files/**](src/files) contains markdown or skeleton files to be shown in the code editor.
+    - [**reducers/**](src/reducers) contains Redux reducers.

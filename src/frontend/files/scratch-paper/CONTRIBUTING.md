@@ -1,1 +1,0 @@
-../../../backend/public/algorithms/CONTRIBUTING.md
